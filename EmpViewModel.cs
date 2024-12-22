@@ -15,6 +15,8 @@ namespace TaskmanagementWebApp.Models
         public bool? IsActive { get; set; }
         
         public string DepName { get; set; }       
+
+        public string City {set;get;}
     }
 
 
