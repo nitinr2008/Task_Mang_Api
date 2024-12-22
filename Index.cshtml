@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Task_Mang_Api.Models.LeaveTypeViewModel>
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+<div id="showDiv">
+
+</div>
+<input type="button" id="btn" value="Delete" />
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="chkall" /></th>
+                <th>Leave Type Id</th>
+                <th>Leave Type</th>
+                <th>IsActive</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" id="chktbl" name="chktbl" data-id="@i.LeaveTypeId" /> </td>
+                    <td>@i.LeaveTypeId</td>
+                    <td>@i.LeaveName</td>
+                    <td>@i.IsActive</td>
+                 </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(function(){
+         $("#chkall").click(function(){
+
+                $("input[name='chktbl']").attr('checked',this.checked);
+    });
+  
+    $("input[name='chktbl']").click(function(){
+        debugger
+        if($("input[name='chktbl']").length == $("input[name='chktbl']:checked").length)
+        {
+            $("#chkall").attr('checked',this.checked);
+        }
+        else{
+            $("#chkall").removeAttr('checked');
+        }
+
+        });
+    
+        $("#btn").click(function(){
+            debugger
+         var res=$("input[name=chktbl]:checked");
+         var cnt=$("input[name='chktbl']:checked").length;
+         var resstr=cnt;
+         res.each(function(){
+            resstr += $(this).attr("data-id") + "<br/>";
+
+         });
+         $("#showDiv").html(resstr);
+
+        
+        
+        });
+
+    });
+
+</script>

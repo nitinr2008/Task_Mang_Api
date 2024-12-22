@@ -1,0 +1,46 @@
+﻿@model TaskmanagementWebApp.Models.EmpViewModel
+
+@{
+    ViewData["Title"] = "CreateEmployee";
+}
+
+<h1>CreateEmployee</h1>
+
+<div class="container">
+    <form asp-action="SaveEmployee" asp-controller="Emp">
+    <div class="row">
+        <div class="col-md-10">
+            <label asp-for="EmpName">Emp Name</label>
+            <input type="text" asp-for="EmpName" placeholder="Enter the name" class="form-control" /><br />
+            <label asp-for="EmpPass">Password</label>
+            <input type="password" asp-for="EmpPass" placeholder="Enter the password" class="form-control" /><br />
+            <label>Department</label>
+            @Html.DropDownListFor(Model => Model.DepId, TempData["depmast"] as SelectList, "--Select---", new { @class = "form-control" })<br />
+            <label>Active/Inactive</label>
+    <label asp-for="IsActive">Active</label>
+    @Html.RadioButtonFor(Model=>Model.IsActive,true,new{@name="active"})
+    <label>InActive</label>
+    @Html.RadioButtonFor(Model=>Model.IsActive,false,new{@name="active"})
+        </div>
+
+    </div>
+    <input type="submit" name="Submit" class="form-control">
+    </form>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $("document").ready(function () {
+        $("#btn").click(function(){
+            var a = $("#DepId").val();
+            alert(a);
+
+
+        })
+
+
+    });
+
+</script>
